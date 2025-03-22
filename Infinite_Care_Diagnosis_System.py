@@ -1,6 +1,5 @@
 import streamlit as st
 import pickle
-import time
 from streamlit_option_menu import option_menu
 
 # Name & Logo
