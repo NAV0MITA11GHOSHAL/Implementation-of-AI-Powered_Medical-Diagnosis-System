@@ -66,7 +66,7 @@ def custom_success(message):
 with st.container():
     selected = st.selectbox(
         ':red[**Select a Disease to Predict**]',
-        ['Diabetes Prediction','Heart Disease Prediction', 'Parkinsons Prediction', 'Lung Cancer Prediction', 'Hypo-Thyroid Prediction']
+        ['Diabetes Prediction','Heart Disease Prediction', 'Parkinsons Prediction', 'Lung Cancer Prediction', 'Hypothyroidism Prediction']
     )
 
 def display_input(label, tooltip, key, type="text"):
@@ -82,15 +82,15 @@ if selected == 'Diabetes Prediction':
         st.markdown('<p style="color: white;">Enter the following details to predict diabetes:</p>', unsafe_allow_html=True)
         left_column, right_column = st.columns(2)
         with left_column:
-            Pregnancies = display_input(':red[**Number of Pregnancies**]', 'Enter number of times pregnant', 'Pregnancies', 'number')
+            Age = display_input(':red[**Age of the Person**]', 'Enter age of the person', 'Age', 'number')
             Glucose = display_input(':red[**Glucose Level**]', 'Enter glucose level', 'Glucose', 'number')
             BloodPressure = display_input(':red[**Blood Pressure value**]', 'Enter blood pressure value', 'BloodPressure', 'number')
             SkinThickness = display_input(':red[**Skin Thickness value**]', 'Enter skin thickness value', 'SkinThickness', 'number')
         with right_column:
+            Pregnancies = display_input(':red[**Number of Pregnancies**]', 'Enter number of times pregnant', 'Pregnancies', 'number')
             Insulin = display_input(':red[**Insulin Level**]', 'Enter insulin level', 'Insulin', 'number')
             BMI = display_input(':red[**BMI value**]', 'Enter Body Mass Index value', 'BMI', 'number')
             DiabetesPedigreeFunction = display_input(':red[**Diabetes Pedigree Function value**]', 'Enter diabetes pedigree function value', 'DiabetesPedigreeFunction', 'number')
-            Age = display_input(':red[**Age of the Person**]', 'Enter age of the person', 'Age', 'number')
 
     diab_diagnosis = ''
     if st.button('Diabetes Test Result'):
@@ -137,7 +137,7 @@ if selected == "Parkinsons Prediction":
             fo = display_input(':red[**MDVP:Fo(Hz)**]', 'Enter MDVP:Fo(Hz) value', 'fo', 'number')
             flo = display_input(':red[**MDVP:Flo(Hz)**]', 'Enter MDVP:Flo(Hz) value', 'flo', 'number')
             Jitter_percent = display_input(':red[**MDVP:Jitter(%)**]', 'Enter MDVP:Jitter(%) value', 'Jitter_percent', 'number')
-            DFA = display_input(':red[**DFA', 'Enter DFA value**]', 'DFA', 'number')
+            DFA = display_input(':red[**DFA**]', 'Enter DFA value', 'DFA', 'number')
             RAP = display_input(':red[**MDVP:RAP**]', 'Enter MDVP:RAP value', 'RAP', 'number')
             PPQ = display_input(':red[**MDVP:PPQ**]', 'Enter MDVP:PPQ value', 'PPQ', 'number')
             APQ3 = display_input(':red[**Shimmer:APQ3**]', 'Enter Shimmer:APQ3 value', 'APQ3', 'number')
@@ -196,11 +196,11 @@ if selected == "Lung Cancer Prediction":
         lungs_diagnosis = "The person has lung cancer disease" if lungs_prediction[0] == 1 else "The person does not have lung cancer disease"
         custom_success(lungs_diagnosis)
 
-# Hypo-Thyroid Prediction Page
-if selected == "Hypo-Thyroid Prediction":
+# Hypothyroidism Prediction Page
+if selected == "Hypothyroidism Prediction":
     with st.container():
-        st.markdown('<h2 style="color: white;">Hypo-Thyroid</h2>', unsafe_allow_html=True)
-        st.markdown('<p style="color: white;">Enter the following details to predict hypo-thyroid disease:</p>', unsafe_allow_html=True)
+        st.markdown('<h2 style="color: white;">Hypothyroidism</h2>', unsafe_allow_html=True)
+        st.markdown('<p style="color: white;">Enter the following details to predict Hypothyroidism:</p>', unsafe_allow_html=True)
         left_column, right_column = st.columns(2)
         with left_column:
             age = display_input(':red[**Age**]', 'Enter age of the person', 'age', 'number')
@@ -214,9 +214,9 @@ if selected == "Hypo-Thyroid Prediction":
             t3 = display_input(':red[**T3 Level**]', 'Enter T3 level', 't3', 'number')
 
     thyroid_diagnosis = ''
-    if st.button("Thyroid Test Result"):
+    if st.button("Hypothyroidism Test Result"):
         thyroid_prediction = models['thyroid'].predict([[age, sex, on_thyroxine, tsh, t3_measured, t3, tt4]])
-        thyroid_diagnosis = "The person has Hypo-Thyroid disease" if thyroid_prediction[0] == 1 else "The person does not have Hypo-Thyroid disease"
+        thyroid_diagnosis = "The person has Hypothyroidism" if thyroid_prediction[0] == 1 else "The person does not have Hypothyroidism"
         custom_success(thyroid_diagnosis)
 
 
